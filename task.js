@@ -7,6 +7,7 @@ async function loadCountries(){
     try{
         const response = await fetch('https://restcountries.com/v3.1/all');
         const countries = await response.json();
+        countries.sort((a, b) => a.name.common.localeCompare(b.name.common));
         countrySelect.innerHTML = '';
         countries.forEach(country => {
             if(country.capital&&country.capital.length>0){
